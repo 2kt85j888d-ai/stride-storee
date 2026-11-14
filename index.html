@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STRIDE – Move. Train. Win.</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#6b6b6b;--card:#f5f5f5;--line:#e5e5e5;--acc:#ff4d00;--inv:#111;--invfg:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#0d0d0d;--fg:#f2f2f2;--mut:#9a9a9a;--card:#1a1a1a;--line:#2b2b2b;--inv:#f2f2f2;--invfg:#111}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#0d0d0d;--fg:#f2f2f2;--mut:#9a9a9a;--card:#1a1a1a;--line:#2b2b2b;--inv:#f2f2f2;--invfg:#111}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 "Helvetica Neue",Arial,sans-serif}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{max-width:1280px;margin:auto;padding:0 20px}
+.bar{background:var(--card);font-size:13px;text-align:center;padding:8px;font-weight:500}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:24px;height:60px}
+.logo{font-weight:900;font-size:24px;letter-spacing:-1px;font-style:italic}
+.links{display:flex;gap:22px;font-weight:600;flex:1;justify-content:center}
+.links a:hover{border-bottom:2px solid var(--fg)}
+.icons{display:flex;gap:6px;align-items:center}
+.search{background:var(--card);border:0;border-radius:99px;padding:8px 14px;color:var(--fg);width:170px}
+.ib{width:40px;height:40px;border-radius:50%;font-size:18px;position:relative}.ib:hover{background:var(--card)}
+.badge{position:absolute;top:2px;right:0;background:var(--acc);color:#fff;font-size:11px;border-radius:99px;min-width:18px;height:18px;line-height:18px;font-weight:700}
+.hero{background:linear-gradient(120deg,#111 0%,#2a2a2a 55%,var(--acc) 140%);color:#fff;border-radius:0 0 24px 24px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;align-items:center;min-height:520px;gap:20px}
+.hero h1{font-size:clamp(44px,8vw,96px);line-height:.92;font-weight:900;text-transform:uppercase;letter-spacing:-3px;font-style:italic}
+.hero p{margin:20px 0 28px;max-width:440px;color:#ddd}
+.btn{display:inline-block;background:var(--inv);color:var(--invfg);padding:14px 28px;border-radius:99px;font-weight:700}
+.btn.w{background:#fff;color:#111}.btn.o{background:none;border:1.5px solid currentColor;color:inherit;margin-left:8px}
+.btn:hover{opacity:.85}
+.hero svg{width:100%;transform:rotate(-12deg)}
+section{padding:56px 0}
+h2{font-size:28px;font-weight:800;margin-bottom:22px;letter-spacing:-.5px}
+.row{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tile{aspect-ratio:3/4;border-radius:14px;padding:18px;display:flex;align-items:end;color:#fff;font-weight:800;font-size:22px;background:linear-gradient(160deg,var(--c1),var(--c2));transition:transform .2s}
+.tile:hover{transform:translateY(-4px)}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chip{padding:8px 18px;border-radius:99px;border:1px solid var(--line);font-weight:600}
+.chip.on{background:var(--inv);color:var(--invfg);border-color:var(--inv)}
+select{background:var(--card);color:var(--fg);border:0;border-radius:99px;padding:9px 14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 14px}
+.card{cursor:pointer}
+.img{background:var(--card);border-radius:12px;aspect-ratio:1;display:grid;place-items:center;position:relative;overflow:hidden}
+.img svg{width:82%;transition:transform .3s}.card:hover .img svg{transform:scale(1.08) rotate(-4deg)}
+.tag{position:absolute;top:10px;left:10px;background:var(--bg);font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;color:var(--acc)}
+.card h3{font-size:15px;margin-top:10px}.card .m{color:var(--mut);font-size:14px}
+.price{font-weight:700;margin-top:6px}.price s{color:var(--mut);font-weight:400;margin-left:6px}
+.stars{color:var(--acc);font-size:13px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat div{background:var(--card);border-radius:14px;padding:26px}.feat b{display:block;font-size:20px;margin:6px 0}.feat span{font-size:30px}
+.feat p,.sub{color:var(--mut)}
+.member{background:var(--inv);color:var(--invfg);border-radius:20px;padding:56px 40px;text-align:center}
+.member p{max-width:560px;margin:12px auto 24px;opacity:.8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.stats b{font-size:40px;font-weight:900;display:block}
+.news{display:flex;gap:8px;max-width:460px;margin-top:14px}
+.news input{flex:1;padding:12px 16px;border-radius:99px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+footer{background:var(--card);padding:48px 0 24px;margin-top:40px;font-size:14px}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.fcols h4{margin-bottom:10px}.fcols a{display:block;color:var(--mut);padding:3px 0}.fcols a:hover{color:var(--fg)}
+.legal{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:none}.ov.on{display:block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:50;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding:20px;padding-top:calc(20px + env(safe-area-inset-top,0px))}
+.drawer.on{transform:none}
+.items{flex:1;overflow:auto}
+.ci{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ci .t{width:76px;height:76px;background:var(--card);border-radius:10px;display:grid;place-items:center;flex:none}.ci .t svg{width:90%}
+.qty{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:99px;margin-top:6px}.qty button{width:28px;height:28px}
+.modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(860px,94%);max-height:92vh;overflow:auto;background:var(--bg);border-radius:18px;z-index:50;display:none;grid-template-columns:1fr 1fr;gap:24px;padding:24px}
+.modal.on{display:grid}
+.sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.sz{border:1px solid var(--line);border-radius:8px;padding:10px 0;text-align:center}.sz.on{border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}
+.toast{position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,120px);background:var(--inv);color:var(--invfg);padding:12px 22px;border-radius:99px;z-index:60;transition:transform .3s}.toast.on{transform:translate(-50%,0)}
+.sz{background:var(--card);color:var(--fg);font-weight:700;cursor:pointer;min-height:44px;display:flex;align-items:center;justify-content:center;font-size:14px}.sz.on{background:var(--inv);color:var(--invfg)}.sz.off{opacity:.35;text-decoration:line-through;pointer-events:none}.modal{align-items:start}
+.co{position:fixed;inset:0;z-index:70;background:var(--bg);overflow:auto;display:none;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}.co.on{display:block}
+.cogrid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;padding-bottom:50px}
+.co input:not([type=radio]),.co select{width:100%;padding:13px 14px;margin:5px 0;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:14px;margin:8px 0;cursor:pointer}.opt:has(input:checked){border-color:var(--fg);box-shadow:0 0 0 1px var(--fg)}.opt b{margin-left:auto}
+.sum{background:var(--card);border-radius:14px;padding:22px;align-self:start;position:sticky;top:20px}.sl{display:flex;justify-content:space-between;gap:10px;padding:5px 0}.bad{color:#d33;font-size:14px;margin-top:10px}
+details{border-top:1px solid var(--line);padding:12px 0}summary{font-weight:700;cursor:pointer}details p{color:var(--mut);margin-top:8px;font-size:14px}
+.sports{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}.sp{flex:none;background:var(--card);border-radius:99px;padding:12px 22px;font-weight:700}.sp:hover{background:var(--inv);color:var(--invfg)}
+@media(max-width:900px){.modal .img{aspect-ratio:16/10}.cogrid{grid-template-columns:1fr}.sum{position:static}}
+@media(max-width:900px){.links{display:none}.hero .wrap,.modal{grid-template-columns:1fr}.tiles,.grid{grid-template-columns:repeat(2,1fr)}.feat,.fcols,.stats{grid-template-columns:repeat(2,1fr)}.search{width:110px}.feat{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="shoe2" viewBox="0 0 240 130"><ellipse cx="120" cy="118" rx="100" ry="7" fill="#000" opacity=".12"/><path d="M14 86c0-9 5-14 13-16l30-8c9-3 14-9 18-18l6-14c3-6 10-7 15-2 9 9 22 15 38 18l48 9c16 3 30 13 30 30v6H14z" fill="var(--s1)"/><path d="M14 86c0-9 5-14 13-16l22-6 6 26H14z" fill="var(--s2)"/><path d="M166 66l44 9c14 3 22 12 22 24v-4c0-14-14-24-30-27z" fill="#000" opacity=".15"/><path d="M82 38l8-10c4-4 8-4 12-1l8 8-18 8z" fill="var(--s2)"/><path d="M72 62l34 18M88 48l32 18M108 52l28 14" stroke="#000" stroke-opacity=".35" stroke-width="3.5" stroke-linecap="round"/><path d="M60 82c40-4 90-2 150 8" stroke="var(--s3)" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M10 96h226c0 10-6 16-16 16H26c-10 0-16-6-16-16z" fill="#f4f4f4"/><path d="M10 96h226l-1 5H11z" fill="var(--s2)"/><path d="M24 110h192" stroke="#bbb" stroke-width="2" stroke-dasharray="6 5"/></symbol><symbol id="shoe" viewBox="0 0 200 110"><path d="M8 78c0-10 6-14 14-16l34-8c8-2 12-8 16-16l6-12c3-5 9-5 13-1 8 8 20 14 34 16l44 8c14 3 26 12 26 26v8c0 4-3 6-7 6H15c-4 0-7-3-7-7z" fill="var(--s1)"/><path d="M8 88h185c0 8-4 14-12 14H20c-8 0-12-6-12-14z" fill="var(--s2)"/><path d="M62 54l30 22M84 40l28 24M110 46l24 18" stroke="var(--s2)" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M120 66c20-2 44 4 64 10" stroke="var(--s3)" stroke-width="8" stroke-linecap="round" fill="none"/></symbol></svg>
+
+<div class="bar">Free shipping on orders over ₹5,000 · Join STRIDE Club for 10% off your first order</div>
+<header><div class="wrap nav">
+<a class="logo" href="#top">STRIDE</a>
+<nav class="links"><a href="#shop" data-f="New">New &amp; Featured</a><a href="#shop" data-f="Men">Men</a><a href="#shop" data-f="Women">Women</a><a href="#shop" data-f="Kids">Kids</a><a href="#shop" data-f="Sale">Sale</a></nav>
+<div class="icons"><input class="search" id="q" placeholder="Search" aria-label="Search"><button class="ib" id="fav" aria-label="Favourites">♡<span class="badge" id="fc">0</span></button><button class="ib" id="cartb" aria-label="Cart">🛍<span class="badge" id="cc">0</span></button></div>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+<div><small style="letter-spacing:3px">NEW SEASON · AIR RUN 26</small><h1>Run it<br>faster</h1><p>Responsive cushioning, featherweight uppers and a ride built for every mile. Meet the new Pulse Runner collection.</p><a class="btn w" href="#shop">Shop now</a><a class="btn o" href="#club">Join the club</a></div>
+<svg viewBox="0 0 240 130" style="--s1:#fff;--s2:#ff4d00;--s3:#111"><use href="#shoe2"/></svg>
+</div></div>
+
+<section style="padding-bottom:0"><div class="wrap"><h2>Shop by sport</h2><div class="sports"><a class="sp" href="#shop" data-sp="running">🏃 Running</a><a class="sp" href="#shop" data-sp="football">⚽ Football</a><a class="sp" href="#shop" data-sp="basketball">🏀 Basketball</a><a class="sp" href="#shop" data-sp="training">🏋️ Training</a><a class="sp" href="#shop" data-sp="walking">🚶 Walking</a><a class="sp" href="#shop" data-sp="lifestyle">👟 Lifestyle</a></div></div></section>
+<section><div class="wrap"><h2>Shop by category</h2><div class="tiles">
+<a class="tile" href="#shop" data-f="Men" style="--c1:#1e3a8a;--c2:#0ea5e9">Men</a>
+<a class="tile" href="#shop" data-f="Women" style="--c1:#be185d;--c2:#fb923c">Women</a>
+<a class="tile" href="#shop" data-f="Kids" style="--c1:#15803d;--c2:#a3e635">Kids</a>
+<a class="tile" href="#shop" data-f="Sale" style="--c1:#7f1d1d;--c2:#ef4444">Sale</a>
+</div></div></section>
+
+<section id="shop" style="padding-top:0"><div class="wrap">
+<div class="row"><h2 id="st">All products</h2><select id="sort" aria-label="Sort"><option value="f">Featured</option><option value="l">Price: Low–High</option><option value="h">Price: High–Low</option><option value="r">Top rated</option></select></div>
+<div class="ctrl" id="chips" style="margin-bottom:24px"></div>
+<div class="grid" id="grid"></div>
+<div style="text-align:center;margin-top:32px"><button class="btn" id="more">Load more</button></div>
+<p class="sub" id="empty" style="display:none;padding:30px 0">No products match your search.</p>
+</div></section>
+
+<section style="background:var(--card)"><div class="wrap"><h2>Why shop with STRIDE</h2><div class="feat">
+<div><span>🚚</span><b>Free delivery &amp; returns</b><p>Free standard delivery over ₹5,000 and 30-day hassle-free returns.</p></div>
+<div><span>🎨</span><b>Make it yours</b><p>Personalise colours and add a name on selected styles.</p></div>
+<div><span>♻️</span><b>Made with recycled materials</b><p>Over 60% of our uppers now use recycled content.</p></div>
+</div></div></section>
+
+<section id="club"><div class="wrap"><div class="member"><small style="letter-spacing:3px">STRIDE CLUB</small><h2 style="font-size:44px;margin:8px 0">Become a member</h2><p>Free shipping, early access to drops, birthday rewards and exclusive training sessions with our coaches.</p><a class="btn w" href="#news" style="background:var(--bg);color:var(--fg)">Join us</a></div></div></section>
+
+<section style="padding-top:0"><div class="wrap stats"><div><b>12M+</b><span class="sub">athletes worldwide</span></div><div><b>190</b><span class="sub">countries shipped to</span></div><div><b>60%</b><span class="sub">recycled content</span></div><div><b>4.8★</b><span class="sub">average rating</span></div></div></section>
+</main>
+
+<footer id="news"><div class="wrap">
+<div class="fcols">
+<div><h4>Stay in the loop</h4><p class="sub">Drops, offers and training tips. No spam.</p><div class="news"><input id="em" type="email" placeholder="Email address"><button class="btn" id="sub">Subscribe</button></div></div>
+<div><h4>Help</h4><a href="#top">Order status</a><a href="#top">Delivery</a><a href="#top">Returns</a><a href="#top">Size guide</a><a href="#top">Contact us</a></div>
+<div><h4>Company</h4><a href="#top">About STRIDE</a><a href="#top">Careers</a><a href="#top">Sustainability</a><a href="#top">Press</a></div>
+<div><h4>Follow</h4><a href="#top">Instagram</a><a href="#top">YouTube</a><a href="#top">X</a><a href="#top">Store locator</a></div>
+</div>
+<div class="legal"><span>© 2026 STRIDE (demo storefront – not a real brand)</span><span>Privacy · Terms · Cookies · <a href="#" id="theme">Toggle theme</a></span></div>
+</div></footer>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer"><div class="row"><h2>Bag</h2><button class="ib" id="cx" aria-label="Close">✕</button></div><div class="items" id="items"></div><div id="tot" style="padding-top:14px"></div></aside>
+<div class="modal" id="modal"></div>
+<div class="co" id="co-page"><div class="wrap"><div class="row" style="padding:16px 0"><span class="logo">STRIDE</span><button class="chip" id="coback">← Back to shop</button></div>
+<div class="cogrid"><div><h2>Delivery details</h2><div class="f2"><input id="fn" placeholder="First name"><input id="ln" placeholder="Last name"></div><input id="ad" placeholder="Address"><div class="f2"><input id="ci" placeholder="City"><input id="pc" placeholder="PIN code" inputmode="numeric" maxlength="6"></div><div class="f2"><input id="ph" placeholder="Mobile number" inputmode="tel" maxlength="10"><input id="em2" type="email" placeholder="Email"></div>
+<h2 style="margin-top:28px">Delivery options</h2><label class="opt"><input type="radio" name="dl" value="0" checked> Standard · 3–5 days <b>Free over ₹5,000</b></label><label class="opt"><input type="radio" name="dl" value="499"> Express · 1–2 days <b>₹499</b></label>
+<h2 style="margin-top:28px">Payment</h2><div id="pay"></div><div id="payd"></div><p class="sub" style="font-size:13px">🔒 Demo checkout: no payment is taken, so please don’t enter real card details.</p><div class="bad" id="err"></div><button class="btn" id="place" style="width:100%;margin-top:14px">Place order</button></div>
+<aside class="sum"><h3 style="margin-bottom:10px">Order summary</h3><div id="sumi"></div><div class="f2" style="grid-template-columns:1fr auto;margin-top:10px"><input id="pr" placeholder="Promo code (try STRIDE10)"><button class="chip" id="pa">Apply</button></div><div id="sumt"></div></aside></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const P=[
+["Pulse Runner 26","Men's Road Running Shoe","Men",12995,0,4.8,"New","#fff","#ff4d00","#111"],
+["Aero Glide","Women's Road Running Shoe","Women",11495,0,4.7,"New","#f9a8d4","#be185d","#111"],
+["Court Classic","Men's Everyday Shoe","Men",8995,10995,4.6,"Sale","#e5e5e5","#1e3a8a","#ff4d00"],
+["Studio Flex","Women's Training Shoe","Women",9495,0,4.5,"","#c4b5fd","#4c1d95","#fff"],
+["Junior Sprint","Big Kids' Running Shoe","Kids",5495,6495,4.7,"Sale","#bef264","#166534","#111"],
+["Trail Ridge GTX","Men's Waterproof Trail Shoe","Men",14995,0,4.9,"New","#a16207","#292524","#fde047"],
+["Cloud Walker","Women's Walking Shoe","Women",7995,9495,4.4,"Sale","#fff","#0ea5e9","#111"],
+["Mini Mover","Little Kids' Shoe","Kids",3995,0,4.6,"","#fca5a5","#b91c1c","#fff"],
+["Hoop Elite 3","Men's Basketball Shoe","Men",13495,0,4.8,"New","#111","#ff4d00","#fff"],
+["Tempo Lite","Women's Racing Shoe","Women",15995,0,4.9,"New","#fde68a","#111","#ff4d00"],
+["Street Low","Unisex Lifestyle Shoe","Men",6995,8995,4.3,"Sale","#d6d3d1","#44403c","#f97316"],
+["Kick Start","Big Kids' Football Boot","Kids",6995,0,4.5,"","#7dd3fc","#075985","#fff"]
+].map((a,i)=>({id:i,n:a[0],d:a[1],c:a[2],p:a[3],o:a[4],r:a[5],t:a[6],s:[a[7],a[8],a[9]]}));
+(()=>{const F=[["Men","Men's Road Running Shoe",["Pulse Tempo","Velocity","Surge","Apex Run","Dash 5","Rapid","Marathon Pro","Flyer","Torque"],9995],["Men","Men's Basketball Shoe",["Hoop Pro","Skyline","Dunk Zone","Court Rider","Baseline","Jump Elite"],10995],["Men","Men's Football Boot",["Striker","Pitch Fire","Goal Rush","Turf Hawk","Cleat X","Volt FG"],8995],["Men","Men's Training Shoe",["Iron Flex","Gym Pro","Power Lift","Cross Fit 2","Rep Max","Core Drive","HIIT Lite","Forge"],8495],["Men","Men's Lifestyle Shoe",["Street Mid","Retro 86","Metro Low","Urban Slip","Heritage","Downtown","Skate Low","Classic Hi","Loft"],6995],["Men","Men's Trail Running Shoe",["Ridge","Summit","Canyon","Rockline","Alpine","Mudslide"],11995],["Women","Women's Road Running Shoe",["Aero Pulse","Breeze","Swift","Glide Max","Luna Run","Zephyr","Stride Air","Horizon","Bolt"],9495],["Women","Women's Training Shoe",["Studio Pro","Sculpt","Flow Fit","Barre Lite","Grace","Power Move","Pilates Low","Vibe"],7995],["Women","Women's Walking Shoe",["Comfort Step","Soft Path","Cloud Stroll","Easy Miles","Park Walk","Plush","Daily Trek"],6995],["Women","Women's Lifestyle Shoe",["Blossom","Retro Wave","Platform Lo","City Chic","Cali Low","Muse","Pastel Hi","Sunset","Velvet"],6495],["Kids","Big Kids' Running Shoe",["Junior Dash","Mini Bolt","Kid Surge","Rocket"],4995],["Kids","Big Kids' Football Boot",["Young Striker","Little Goal","Pitch Pup"],5495],["Kids","Little Kids' Lifestyle Shoe",["Play Low","Mini Street","Tiny Retro","Doodle"],3495]];
+const C=[["#fff","#ff4d00","#111"],["#111","#ff4d00","#fff"],["#e5e5e5","#1e3a8a","#ff4d00"],["#f9a8d4","#be185d","#111"],["#bef264","#166534","#111"],["#c4b5fd","#4c1d95","#fff"],["#fde68a","#111","#ff4d00"],["#7dd3fc","#075985","#fff"],["#d6d3d1","#44403c","#f97316"],["#fca5a5","#b91c1c","#fff"],["#86efac","#14532d","#facc15"],["#fed7aa","#9a3412","#111"]];
+let i=0;F.forEach(([c,d,ns,b])=>ns.forEach(n=>{const sale=i%4==1,p=b+(i*37%6)*500;P.push({id:P.length,n,d,c,p,o:sale?Math.round(p*1.2/100)*100-5:0,r:+(4.2+(i*7%8)/10).toFixed(1),t:sale?"Sale":i%5==0?"New":"",s:C[(i*5+3)%12]});i++}))})();
+const $=s=>document.querySelector(s),fmt=n=>"₹"+n.toLocaleString("en-IN");
+let filt="All",sort="f",q="",cart=[],favs=new Set();
+try{cart=JSON.parse(localStorage.getItem("stride-cart")||"[]");favs=new Set(JSON.parse(localStorage.getItem("stride-fav")||"[]"))}catch(e){}
+const save=()=>{try{localStorage.setItem("stride-cart",JSON.stringify(cart));localStorage.setItem("stride-fav",JSON.stringify([...favs]))}catch(e){}};
+const shoe=s=>`<svg viewBox="0 0 240 130" style="--s1:${s[0]};--s2:${s[1]};--s3:${s[2]}"><use href="#shoe2"/></svg>`;
+const cats=["All","New","Men","Women","Kids","Sale"];
+$("#chips").innerHTML=cats.map(c=>`<button class="chip" data-c="${c}">${c}</button>`).join("");
+function setF(f){filt=f;render();}
+let shown=20;function render(keep){if(!keep)shown=20;
+  document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("on",b.dataset.c===filt));
+  let l=P.filter(p=>(filt==="All"||(filt==="New"?p.t==="New":filt==="Sale"?p.t==="Sale":p.c===filt))&&(p.n+p.d).toLowerCase().includes(q));
+  if(sort==="l")l.sort((a,b)=>a.p-b.p);if(sort==="h")l.sort((a,b)=>b.p-a.p);if(sort==="r")l.sort((a,b)=>b.r-a.r);
+  $("#st").textContent=(filt==="All"?"All products":filt)+" ("+l.length+")";
+  $("#empty").style.display=l.length?"none":"block";
+  $("#more").style.display=l.length>shown?"":"none";$("#more").textContent="Load more ("+Math.min(shown,l.length)+" of "+l.length+")";
+  $("#grid").innerHTML=l.slice(0,shown).map(p=>`<div class="card" data-id="${p.id}"><div class="img">${p.t?`<span class="tag">${p.t==="Sale"?"Sale":"Just in"}</span>`:""}${shoe(p.s)}</div><h3>${p.n}</h3><div class="m">${p.d}</div><div class="m" style="font-size:12px">UK 5–12 · 3 colours</div><div class="stars">${"★".repeat(Math.round(p.r))} <span class="m">${p.r}</span></div><div class="price">${fmt(p.p)}${p.o?`<s>${fmt(p.o)}</s>`:""}</div></div>`).join("");
+}
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1800)}
+function counts(){$("#cc").textContent=cart.reduce((a,c)=>a+c.q,0);$("#fc").textContent=favs.size;save()}
+function drawer(){
+  const it=cart.map((c,i)=>{const p=P[c.id];return `<div class="ci"><div class="t">${shoe(p.s)}</div><div style="flex:1"><b>${p.n}</b><div class="m sub">${p.d} · UK ${c.s}</div><div class="qty"><button data-q="${i}" data-d="-1">−</button>${c.q}<button data-q="${i}" data-d="1">+</button></div></div><b>${fmt(p.p*c.q)}</b></div>`}).join("");
+  const sub=cart.reduce((a,c)=>a+P[c.id].p*c.q,0),ship=sub>=5000||!sub?0:299;
+  $("#items").innerHTML=it||'<p class="sub" style="padding:20px 0">Your bag is empty.</p>';
+  $("#tot").innerHTML=`<div class="row"><span>Subtotal</span><b>${fmt(sub)}</b></div><div class="row sub"><span>Delivery</span><span>${ship?fmt(ship):"Free"}</span></div><div class="row" style="margin:8px 0 14px"><b>Total</b><b>${fmt(sub+ship)}</b></div><button class="btn" style="width:100%" id="co">Checkout</button>`;
+}
+function open(el){$("#ov").classList.add("on");el.classList.add("on")}
+function closeAll(){["#ov","#drawer","#modal"].forEach(s=>$(s).classList.remove("on"))}
+function product(id){
+  const p=P[id];let sel=null;
+  $("#modal").innerHTML=`<div class="img" style="aspect-ratio:1">${shoe(p.s)}</div><div><button class="ib" style="float:right" id="mx" aria-label="Close">✕</button><small class="sub">${p.c==="Kids"?"Kids":p.c}'s</small><h2 style="margin:4px 0">${p.n}</h2><div class="sub">${p.d}</div><div class="stars" style="margin:6px 0">${"★".repeat(Math.round(p.r))} ${p.r}</div><div class="price" style="font-size:20px">${fmt(p.p)}${p.o?`<s>${fmt(p.o)}</s>`:""}</div><p class="sub" style="margin:12px 0">Lightweight, breathable engineered mesh with a responsive foam midsole and durable rubber outsole. Designed for comfort from first mile to last.</p><b>Select size (UK)</b> <small class="sub">· struck-out sizes are sold out</small><div class="sizes">${[5,6,7,8,9,10,11,12].map(s=>`<div class="sz${(s+id)%7==0?" off":""}" data-s="${s}">UK ${s}</div>`).join("")}</div><button class="btn" style="width:100%;margin-bottom:8px" id="add">Add to bag</button><button class="btn" style="width:100%;background:none;border:1.5px solid var(--line);color:var(--fg)" id="fv">${favs.has(id)?"♥ Favourited":"♡ Favourite"}</button><div style="margin-top:16px"><details open><summary>Product details</summary><p>Engineered mesh upper, foam midsole, rubber outsole. Style STR-${1000+id}. Colour shown may differ slightly.</p></details><details><summary>Delivery &amp; returns</summary><p>Free standard delivery over ₹5,000 (3–5 days). Free 30-day returns.</p></details><details><summary>Reviews (${Math.round(p.r*40)})</summary><p>${p.r}★ average. “True to size and very comfortable for long runs.”</p></details></div></div>`;
+  open($("#modal"));
+  $("#modal").onclick=e=>{
+    const z=e.target.closest(".sz");if(z){sel=z.dataset.s;document.querySelectorAll(".sz").forEach(x=>x.classList.toggle("on",x===z))}
+    if(e.target.id==="mx")closeAll();
+    if(e.target.id==="fv"){favs.has(id)?favs.delete(id):favs.add(id);e.target.textContent=favs.has(id)?"♥ Favourited":"♡ Favourite";counts()}
+    if(e.target.id==="add"){if(!sel)return toast("Please select a size");
+      const f=cart.find(c=>c.id===id&&c.s===sel);f?f.q++:cart.push({id,s:sel,q:1});counts();closeAll();toast(p.n+" added to bag")}
+  }
+}
+document.addEventListener("click",e=>{
+  const c=e.target.closest(".chip");if(c)setF(c.dataset.c);
+  const f=e.target.closest("[data-f]");if(f)setF(f.dataset.f);
+  const k=e.target.closest(".card");if(k)product(+k.dataset.id);
+  const b=e.target.closest("[data-q]");if(b){const i=+b.dataset.q;cart[i].q+=+b.dataset.d;if(cart[i].q<1)cart.splice(i,1);counts();drawer()}
+  if(e.target.id==="co"){if(!cart.length)return toast("Your bag is empty");closeAll();$(".cogrid").innerHTML=COH;pay="upi";renderCO();$("#payd").innerHTML=PD[pay];$("#co-page").classList.add("on");$("#co-page").scrollTop=0}
+});
+$("#more").onclick=()=>{shown+=20;render(1)};
+$("#sort").onchange=e=>{sort=e.target.value;render()};
+$("#q").oninput=e=>{q=e.target.value.toLowerCase();render();if(q)location.hash="shop"};
+$("#cartb").onclick=()=>{drawer();open($("#drawer"))};
+$("#cx").onclick=$("#ov").onclick=closeAll;
+$("#fav").onclick=()=>toast(favs.size?favs.size+" saved favourite"+(favs.size>1?"s":""):"No favourites yet");
+$("#sub").onclick=()=>{const v=$("#em").value;/\S+@\S+\.\S+/.test(v)?(toast("Thanks for subscribing!"),$("#em").value=""):toast("Enter a valid email")};
+$("#theme").onclick=e=>{e.preventDefault();const d=document.documentElement,dark=getComputedStyle(d).colorScheme==="dark";d.dataset.theme=dark?"light":"dark"};
+const PAY=[["upi","UPI","GPay, PhonePe, Paytm"],["card","Credit / Debit card","Visa, Mastercard, RuPay"],["nb","Net banking","All major banks"],["wal","Wallets","Paytm, Amazon Pay, Mobikwik"],["emi","No-cost EMI","3, 6 or 9 months"],["cod","Cash on delivery","₹49 handling fee"]];
+const PD={upi:'<input id="upi" placeholder="UPI ID (name@bank)">',card:'<input id="cn" placeholder="Card number" inputmode="numeric" maxlength="19"><input id="cnm" placeholder="Name on card"><div class="f2"><input id="ce" placeholder="MM/YY" maxlength="5"><input id="cv" placeholder="CVV" type="password" maxlength="4"></div>',nb:'<select id="bk"><option>Select your bank</option><option>SBI</option><option>HDFC Bank</option><option>ICICI Bank</option><option>Axis Bank</option><option>Kotak</option></select>',wal:'<select id="wl"><option>Select wallet</option><option>Paytm</option><option>Amazon Pay</option><option>Mobikwik</option></select>',emi:'<select id="em3"><option>Select tenure</option><option>3 months</option><option>6 months</option><option>9 months</option></select><input id="cn2" placeholder="Card number" inputmode="numeric">',cod:'<p class="sub">Pay in cash or UPI when your order arrives.</p>'};
+let pay="upi",promo=0;const COH=$(".cogrid").innerHTML;
+function tot(){const sub=cart.reduce((a,c)=>a+P[c.id].p*c.q,0),d=+(document.querySelector("input[name=dl]:checked")||{value:0}).value,ship=d||(sub>=5000||!sub?0:299),cod=pay==="cod"?49:0,disc=Math.round(sub*promo);return{sub,ship,cod,disc,t:sub+ship+cod-disc}}
+function renderCO(){
+$("#pay").innerHTML=PAY.map(p=>`<label class="opt"><input type="radio" name="pay" value="${p[0]}"${p[0]===pay?" checked":""}><span><b style="margin:0">${p[1]}</b><br><small class="sub">${p[2]}</small></span></label>`).join("");
+const t=tot();
+$("#sumi").innerHTML=cart.map(c=>{const p=P[c.id];return `<div class="sl"><span>${p.n} · UK ${c.s} × ${c.q}</span><span>${fmt(p.p*c.q)}</span></div>`}).join("");
+$("#sumt").innerHTML=`<hr style="border:0;border-top:1px solid var(--line);margin:12px 0"><div class="sl"><span>Subtotal</span><span>${fmt(t.sub)}</span></div>${t.disc?`<div class="sl"><span>Promo</span><span>−${fmt(t.disc)}</span></div>`:""}<div class="sl"><span>Delivery</span><span>${t.ship?fmt(t.ship):"Free"}</span></div>${t.cod?`<div class="sl"><span>COD fee</span><span>${fmt(t.cod)}</span></div>`:""}<div class="sl"><b>Total</b><b>${fmt(t.t)}</b></div>`}
+document.addEventListener("change",e=>{if(e.target.name==="pay"){pay=e.target.value;$("#payd").innerHTML=PD[pay];renderCO()}if(e.target.name==="dl")renderCO()});
+document.addEventListener("click",e=>{
+const id=e.target.id,sp=e.target.closest("[data-sp]");
+if(sp){q=sp.dataset.sp;$("#q").value=q;filt="All";render()}
+if(id==="coback"||id==="codone")$("#co-page").classList.remove("on");
+if(id==="pa"){const c=$("#pr").value.trim().toUpperCase();promo=c==="STRIDE10"?.1:0;toast(promo?"Promo applied: 10% off":"Invalid promo code");renderCO()}
+if(id==="place"){
+const v=i=>$("#"+i)?$("#"+i).value.trim():"";let m="";
+if(!v("fn")||!v("ln")||!v("ad")||!v("ci"))m="Please complete your delivery details.";
+else if(!/^\d{6}$/.test(v("pc")))m="Enter a valid 6-digit PIN code.";
+else if(!/^\d{10}$/.test(v("ph")))m="Enter a valid 10-digit mobile number.";
+else if(!/\S+@\S+\.\S+/.test(v("em2")))m="Enter a valid email address.";
+else if(pay==="upi"&&!/^[\w.-]+@\w+$/.test(v("upi")))m="Enter a valid UPI ID.";
+else if(pay==="card"&&(!/^\d{12,19}$/.test(v("cn").replace(/\s/g,""))||!/^\d{2}\/\d{2}$/.test(v("ce"))||!/^\d{3,4}$/.test(v("cv"))))m="Please check your card details.";
+else if(pay==="nb"&&$("#bk").selectedIndex<1)m="Select your bank.";
+else if(pay==="wal"&&$("#wl").selectedIndex<1)m="Select a wallet.";
+else if(pay==="emi"&&($("#em3").selectedIndex<1||!/^\d{12,19}$/.test(v("cn2"))))m="Select a tenure and enter your card number.";
+$("#err").textContent=m;if(m)return;
+const t=tot(),no="STR-"+Math.floor(1e6+Math.random()*9e6),em=v("em2"),via=PAY.find(p=>p[0]===pay)[1];cart=[];promo=0;counts();
+$(".cogrid").innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 0"><div style="font-size:64px">✅</div><h2>Order confirmed!</h2><p class="sub" style="margin:8px 0 22px">Order ${no} · ${fmt(t.t)} via ${via}<br>A confirmation will be sent to ${em}. Estimated delivery: 3–5 days.</p><button class="btn" id="codone">Continue shopping</button></div>`}
+});
+render();counts();
+</script>
+</body>
+</html>
